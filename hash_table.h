@@ -18,7 +18,20 @@ public:
 	hash_table() {
 		numItem = 0;
 		for (int i = 0; i < sizet; i++) hash_map[i] = nullptr; } 
-
+        ~hash_table() {
+		cout << "Start destruct deletion…" << endl;
+		for (int i = 0; i < sizet; i++) 
+		if (hash_map[i] != NULL)
+		{
+			Node* p = hash_map[i];
+			while (hash_map[i])
+			{
+				p = hash_map[i];
+				hash_map[i] = p->next;
+				delete p;
+			}
+		}
+	 ; }
 	void hash_insert(string key, int addr); 
 	void hash_insert(Node* New_Node);
 
